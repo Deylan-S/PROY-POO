@@ -30,7 +30,6 @@ public class Categoria {
     public String getNombre() {
         return nombre;
     }
-
     
     // devuelve una copia  para evitar modificaciones externas directas
     public List<Item> getItems() {
