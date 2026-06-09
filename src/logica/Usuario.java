@@ -1,5 +1,5 @@
 package logica;
 
-public class usuario {
+public class Usuario {
 
 }
