@@ -66,7 +66,7 @@ public class Item {
         this.descripcion = descripcion;
     }
 
-     // Cambia el tipo del ítem y actualiza la lista del tipo anterior y la del nuevo
+     // cambia el tipo del ítem y actualiza la lista del tipo anterior y la del nuevo
     public void setTipo(Tipo tipo) {
         if (tipo == null) return;
         this.tipo.eliminarItem(this);
