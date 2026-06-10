@@ -1,22 +1,19 @@
 package logica;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * representa un préstamo activo de un conjunto de ítems a un usuario
  * un ítem solo puede pertenecer a un préstamo a la vez
  * un préstamo puede tener cero o más alertas asociadas
  */
 public class Prestamo {
-
     private int codigo;
     private Usuario usuario;
     private List<Item> items;
     private List<Alerta> alertas;
-    private LocalDate fecha;
-
+    private LocalDateTime fecha;
     // constructor
      // crea un préstamo y lo registra en el usuario que corresponde
     public Prestamo(int codigo, Usuario usuario) {
@@ -24,32 +21,25 @@ public class Prestamo {
         this.usuario = usuario;
         this.items   = new ArrayList<>();
         this.alertas = new ArrayList<>();
-        this.fecha   = LocalDate.now();
-
+        this.fecha   = LocalDateTime.now();
         usuario.agregarPrestamo(this);
     }
-
     // getters
     public int getCodigo() {
         return codigo;
     }
-
     public Usuario getUsuario() {
         return usuario;
     }
-
     public List<Item> getItems() {
         return items;
     }
-
     public List<Alerta> getAlertas() {
         return alertas;
     }
-
-    public LocalDate getFecha() {
+    public LocalDateTime getFecha() {
         return fecha;
     }
-
     // gestión de ítems
     /**
      * agrega un ítem al préstamo y marca el ítem como prestado
@@ -61,7 +51,6 @@ public class Prestamo {
             item.setPrestamo(this);
         }
     }
-
     /**
      * elimina un ítem del préstamo y lo marca como disponible
      * se usa tanto para eliminar ítems durante la creación del préstamo
@@ -72,21 +61,17 @@ public class Prestamo {
             item.setPrestamo(null);
         }
     }
-
     // gestión de alertas
-
      // agrega una alerta a este préstamo
     public void agregarAlerta(Alerta alerta) {
         if (alerta != null && !alertas.contains(alerta)) {
             alertas.add(alerta);
         }
     }
-
      // elimina una alerta específica del préstamo
     public void eliminarAlerta(Alerta alerta) {
         alertas.remove(alerta);
     }
-
     /**
      * elimina todas las alertas del préstamo
      * se usa al finalizar el préstamo
@@ -94,7 +79,6 @@ public class Prestamo {
     public void eliminarAlertas() {
         alertas.clear();
     }
-
     // consultas
     /**
      * indica si el préstamo tiene al menos un ítem
@@ -103,7 +87,6 @@ public class Prestamo {
     public boolean tieneItems() {
         return !items.isEmpty();
     }
-
     // representación
     @Override
     public String toString() {
@@ -112,7 +95,6 @@ public class Prestamo {
                 + ", items=" + items.size()
                 + ", fecha=" + fecha + "}";
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -120,7 +102,6 @@ public class Prestamo {
         Prestamo otro = (Prestamo) o;
         return this.codigo == otro.codigo;
     }
-
     @Override
     public int hashCode() {
         return Integer.hashCode(codigo);
